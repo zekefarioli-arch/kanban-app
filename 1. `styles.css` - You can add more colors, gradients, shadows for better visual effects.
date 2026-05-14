@@ -1,0 +1,20 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.kanban-board {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Add more colors and gradients */
+.column {
+    width: calc(100% / 3 - 40px);  
+    margin: 20px;
+    border-radius: 8px;
+    background: linear-gradient(to right, #ff7c7c, #ffbcbc); /* Add a gradient */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
