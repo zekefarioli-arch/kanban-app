@@ -1,4 +1,4 @@
-// script.js
+// entire file content ...
 document.addEventListener('DOMContentLoaded', () => {
     const columns = document.querySelectorAll('.column');
     columns.forEach(column => {
@@ -27,5 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.value = '';
             }
         });
+    });
+
+    // Add task functionality
+    const addTaskForm = document.querySelector('.add-task-form');
+    addTaskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = addTaskForm.querySelector('input[type="text"]');
+        const cardText = input.value.trim();
+        if (cardText) {
+            const newCard = document.createElement('div');
+            newCard.className = 'card';
+            newCard.textContent = cardText;
+            const column = document.querySelector('.column#to-do');
+            column.appendChild(newCard);
+            input.value = '';
+        }
     });
 });
