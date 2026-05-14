@@ -17,21 +17,61 @@
         .kanban-board {
             display: flex;
             gap: 20px;
+            padding: 20px;
         }
         .column {
             width: 30%;
             min-width: 300px;
-            padding: 10px;
+            padding: 15px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .column h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
         .card {
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
-            border-radius: 3px;
-            background-color: #f9f9f9;
+            border-radius: 6px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .add-card-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #eef;
+            border-radius: 5px;
+        }
+        .add-card-form input[type="text"] {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .add-card-form button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .add-card-form button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -39,23 +79,51 @@
     <div class="kanban-board">
         <div class="column" id="to-do">
             <h2>To Do</h2>
-            <div class="card">Card 1: Implement feature X</div>
-            <div class="card">Card 2: Review documentation</div>
+            <form class="add-card-form">
+                <input type="text" placeholder="New card description..." required>
+                <button type="submit">Add Card</button>
+            </form>
+            <div class="card">Card 1: Implement feature X</div class="card">Card 2: Review documentation</div >
         </div>
         <div class="column" id="in-progress">
             <h2>In Progress</h2>
-            <div class="card">Card 3: Design UI component</div>
-            <div class="card">Card 4: Write unit tests</div>
+            <form class="add-card-form">
+                <input type="text" placeholder="New card description..." required>
+                <button type="submit">Add Card</button>
+            </form>
+            <div class="card">Card 3: Design UI component</div class="card">Card 4: Write unit tests</div >
         </div>
         <div class="column" id="done">
             <h2>Done</h2>
-            <div class="card">Card 5: Setup project structure</div>
-            <div class="card">Card 6: Initial commit</div>
+            <form class="add-card-form">
+                <input type="text" placeholder="New card description..." required>
+                <button type="submit">Add Card</button>
+            </form>
+            <div class="card">Card 5: Setup project structure</div class="card">Card 6: Initial commit</div >
         </div>
-    </div>
+    </div >
 
     <script>
-        // JavaScript to add cards dynamically can be added here
+        document.querySelectorAll('.add-card-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const input = this.querySelector('input[type="text"]');
+                const cardText = input.value.trim();
+
+                if (cardText) {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.textContent = cardText;
+
+                    // Append the new card to the column containing the form
+                    const column = this.closest('.column');
+                    column.appendChild(card);
+
+                    // Clear the input field
+                    input.value = '';
+                }
+            });
+        });
     </script>
 </body>
 </html>
