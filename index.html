@@ -1,11 +1,14 @@
+<!-- index.html -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban Board</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Add Sortable.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/Sortablejs@latest"></script>
 </head>
 <body>
-    <div class="kanban-board">
+    <div class="kanban-board sortable">
         <div class="column" id="to-do">
             <h2>To Do</h2>
             <form class="add-card-form">
@@ -37,4 +40,3 @@
 
     <script src="script.js"></script>
 </body>
-</html>
